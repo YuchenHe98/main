@@ -57,7 +57,6 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<ReadOnlyPerson> predicate);
 
-    //@@author hj2304
     void sort();
 
     TreeSet<Integer> generateMeetingTime(Index[] ListOfIndex);
