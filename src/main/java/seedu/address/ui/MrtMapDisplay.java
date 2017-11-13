@@ -183,7 +183,7 @@ public class MrtMapDisplay {
             int currMrtIndex = i;
             int previousMrtIndex = i - 1;
 
-            if (isNeighbour(previousMrtIndex,currMrtIndex)) {
+            if (isNeighbour(previousMrtIndex, currMrtIndex)) {
                 StdDraw.setPenColor(StdDraw.GRAY);
                 ArrayList<String> commonLines = getCommonLines(previousMrtIndex, currMrtIndex);
                 StdDraw.setPenColor(getStationColor(commonLines.get(0)));

@@ -430,8 +430,7 @@ public final class StdDraw {
         // if (ws <= 1 && hs <= 1) pixel(x, y);
         if (scaledPenRadius <= 1) {
             pixel(x, y);
-        }
-        else {
+        } else {
             offscreen.fill(new Ellipse2D.Double(xs - scaledPenRadius / 2, ys - scaledPenRadius / 2,
                     scaledPenRadius, scaledPenRadius));
         }
