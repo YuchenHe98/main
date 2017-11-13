@@ -21,11 +21,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.schedule.Day;
 import seedu.address.model.schedule.Slot;
 import seedu.address.model.schedule.Time;
-import seedu.address.testutil.PersonBuilder;
 
-/**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
- */
+//@@author YuchenHe98
 public class AddScheduleCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -58,7 +55,7 @@ public class AddScheduleCommandTest {
     }
 
     private AddScheduleCommand prepareCommand(Index index, Day day, Time startTime, Time endTime)
-            throws IllegalValueException{
+            throws IllegalValueException {
         AddScheduleCommand addScheduleCommand = new AddScheduleCommand(index, day, startTime, endTime);
         addScheduleCommand.setData(model, new CommandHistory(), new UndoRedoStack());
         return addScheduleCommand;

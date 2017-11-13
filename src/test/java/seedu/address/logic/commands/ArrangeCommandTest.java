@@ -6,7 +6,6 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.Before;
 import org.junit.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.UndoRedoStack;
@@ -20,30 +19,31 @@ import seedu.address.model.schedule.Time;
 
 //@@author YuchenHe98
 /**
- * test for visualizing a person's schedule
+ * Arrange a meeting test. As all the tests for date and time classes are added independently, this test only includes
+ * the command test with valid time and date form.
  */
-public class VisualizeCommandTest {
+public class ArrangeCommandTest {
 
     private Model model;
     private Model expectedModel;
-    private VisualizeCommand visualizeCommand;
+    private ArrangeCommand arrangeCommand;
 
     @Before
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        visualizeCommand = new VisualizeCommand(Index.fromOneBased(1));
-        visualizeCommand.setData(model, new CommandHistory(), new UndoRedoStack());
+        int[] indexToTest = {1, 2};
+        arrangeCommand = new ArrangeCommand(indexToTest);
+        arrangeCommand.setData(model, new CommandHistory(), new UndoRedoStack());
     }
 
     @Test
     public void findCommonSlotSuccess() throws IllegalValueException, PersonNotFoundException {
         Slot firstSlot = new Slot(new Day("Monday"), new Time("0700"), new Time("1000"));
-        Slot secondSlot = new Slot(new Day("Tuesday"), new Time("0930"), new Time("1100"));
+        Slot secondSlot = new Slot(new Day("Monday"), new Time("0930"), new Time("1100"));
         model.addScheduleToPerson(0, firstSlot.getBusyTime());
-        model.addScheduleToPerson(0, secondSlot.getBusyTime());
-        assertCommandSuccess(visualizeCommand, model, VisualizeCommand.MESSAGE_VISUALIZE_PERSON_SUCCESS
-                + "1" + visualizeCommand.scheduleInfo(), expectedModel);
+        model.addScheduleToPerson(1, secondSlot.getBusyTime());
+        assertCommandSuccess(arrangeCommand, model, ArrangeCommand.MESSAGE_ARRANGE_PERSON_SUCCESS
+                + arrangeCommand.scheduleInfo(), expectedModel);
     }
 }
-

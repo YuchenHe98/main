@@ -79,7 +79,7 @@ public class ChangeUsernameCommand extends Command {
 ###### /java/seedu/address/logic/commands/CreateDefaultAccountCommand.java
 ``` java
 /**
- * Changes a user's password
+ * Creates a account with username "admin" and password "admin"
  */
 public class CreateDefaultAccountCommand extends Command {
     public static final String COMMAND_WORD = "createDefaultAcc";
@@ -115,6 +115,7 @@ public class RemoveAccountCommand extends Command {
 
     public static final String MESSAGE_REMOVE_SUCCESS = "Login removed successfully";
     public static final String MESSAGE_ACCOUNT_ALREADY_REMOVED = "Account does not exist";
+    public static final String MESSAGE_INVALID_CREDENTIALS = "Invalid Credentials! Please try again.";
 
     private final String username;
     private final String password;
@@ -129,7 +130,9 @@ public class RemoveAccountCommand extends Command {
         if (model.getUserPrefs().checkUsername("") || model.getUserPrefs().checkPassword("")) {
             return new CommandResult(MESSAGE_ACCOUNT_ALREADY_REMOVED);
         } else {
-            if (model.getUserPrefs().checkUsername(username) && model.getUserPrefs().checkPassword(password)) {
+            if (!model.getUserPrefs().checkUsername(username) || !model.getUserPrefs().checkPassword(password)) {
+                return new CommandResult(MESSAGE_INVALID_CREDENTIALS);
+            } else if (model.getUserPrefs().checkUsername(username) && model.getUserPrefs().checkPassword(password)) {
                 model.getUserPrefs().setDefaultUsername("");
                 model.getUserPrefs().setDefaultPassword("");
             }
@@ -416,8 +419,8 @@ public class RemoveAccountCommandParser implements Parser<RemoveAccountCommand> 
 */
 
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: derive(#ffffff, 20%);
+    background-color: #ffffff; /* Used in the default.html file */
 }
 
 .label {

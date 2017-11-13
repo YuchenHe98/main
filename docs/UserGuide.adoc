@@ -65,12 +65,17 @@ Option 1: Format: `help` +
 Option 2.1: Menu -> File -> Help +
 Option 2.2: Menu -> File -> `F1`
 
+// tag::createDefaultAcc[]
 === Creating Default Account : `createDefaultAcc`
 Creates a default login account for a new user
 Format: `createDefaultAcc` +
 
-Username: `Admin` +
-Password: `Admin`
+Username: `admin` +
+Password: `admin`
+
+// end::createDefaultAcc[]
+
+// tag::removeLogin[]
 
 === Removing Login Account : `removeLogin`
 Removes the login account. +
@@ -82,6 +87,9 @@ Examples:
 * `removeLogin admin admin`
 * `removeLogin tom123 1642522`
 
+// end::removeLogin[]
+
+// tag::changepw[]
 
 === Changing password : `changepw`
 Changes a user's password needed to access H.M.U v1.4 +
@@ -93,6 +101,10 @@ Examples:
 * `changepw admin tom harry`
 * `changepw admin !@# !!!!`
 
+// end::changepw[]
+
+// tag::changeuser[]
+
 === Changing password : `changeuser`
 Changes a user's username needed to access H.M.U v1.2 +
 Format: `changepw old_username new_username password` +
@@ -100,6 +112,8 @@ Format: `changepw old_username new_username password` +
 Examples:
 
 * `changeuser admin user password`
+
+// end::changeuser[]
 
 === Adding a person: `add`
 
@@ -114,6 +128,8 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/Kranji`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 m/Tanah Merah t/criminal`
 
+// tag::addSchedule[]
+
 === Adding a free time slot to a person: `addSchedule`
 
 Adds a busy time span to a person to the address book +
@@ -127,6 +143,10 @@ Examples:
 * `addSchedule 2 d/Monday st/0800 et/1030`
 * `addSchedule 4 d/Friday st/1300 et/1500`
 
+// end::addSchedule[]
+
+// tag::clearSchedule[]
+
 === Clear a free time slot for a person: `clearSchedule`
 
 Clear a time span for a person in the address book +
@@ -139,6 +159,10 @@ Examples:
 
 * `clearSchedule 2 d/Monday st/0800 et/1030`
 * `clearSchedule 4 d/Friday st/1300 et/1500`
+
+// end::clearSchedule[]
+
+// tag::visualize[]
 
 === View a person's schedule : `visualize`
 
@@ -160,6 +184,10 @@ Visualizes the 2nd person in the address book.
 `visualizes 1` +
 Visualizes the 1st person in the results of the `find` command.
 
+// end::visualize[]
+
+// tag::arrange[]
+
 === Arrange a meeting for a list of people : `arrange`
 
 Arrange a meeting for a list of persons in the address book. +
@@ -174,6 +202,8 @@ Examples:
 
 * `arrange 1 2 3` +
 Arranges a meeting for person 1, person 2 and person 3 based on their free time slots.
+
+// end::arrange[]
 
 === Listing all persons : `list`
 
@@ -200,6 +230,7 @@ Edits the phone number and email address of the 1st person to be `91234567` and 
 * `edit 2 n/Betsy Crower t/` +
 Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+// tag::find1[]
 === Searching for persons: `find`
 
 Finds persons whose fields contain any of the given keywords. +
@@ -218,10 +249,10 @@ Format: `find TYPE [PREFIX/KEYWORD] [PREFIX/MORE_KEYWORDS]`
 
 Examples:
 
-* `findByName John` +
-Returns `john` and `John Doe`
-* `findByName Betsy Tim John` +
-Returns any person having names `Betsy`, `Tim`, or `John`
+* `find OR n/John e/johndoe t/friend` +
+Returns `John Doe`, `john` and every entry tagged 'friend'
+* `find AND n/John e/johndoe t/friend` +
+Returns `John Doe`
 
 
 === Locating persons by name: `findByName`
@@ -244,6 +275,9 @@ Returns `john` and `John Doe`
 * `findByName Betsy Tim John` +
 Returns any person having names `Betsy`, `Tim`, or `John`
 
+// end::find1[]
+// tag::findByAddress[]
+
 === Locating persons by address: `findByAddress`
 
 Finds persons whose addresses contain any of the given keywords. +
@@ -264,6 +298,8 @@ Returns `john` and `John Doe` whose addresses contain the word 'stadium'.
 * `findByAddress stadium pier` +
 Returns any person having addresses containing `stadium` or `pier`
 
+// end::findByAddress[]
+
 === Locating persons by phone: `findByPhone`
 
 Finds persons whose phone contain any of the given keywords. +
@@ -275,6 +311,7 @@ Examples:
 * `findByPhone 12345678` +
 Returns `john` and `John Doe` whose phone number is '12345678'.
 
+// tag::find2[]
 === Locating persons by email: `findByEmail`
 
 Finds persons whose addresses contain any of the given keywords. +
@@ -315,6 +352,8 @@ Returns Persons with the tag 'friend'.
 * `findByTag owesMoney friend` +
 Returns any person having tags of `owesMoney` or `friend`
 
+// end::find2[]
+
 === Deleting a person : `delete`
 
 Deletes the specified person from the address book. +
@@ -335,6 +374,8 @@ Deletes the 2nd person in the address book.
 `delete 1` +
 Deletes the 1st person in the results of the `find` command.
 
+// tag::locate[]
+
 === Locating a person : `locate`
 
 Locate the specified person's address from the address book on Google Map +
@@ -351,6 +392,8 @@ Examples:
 * `list` +
 `locate 2` +
 Searches the 2nd person in the address book in Google Map.
+
+// end::locate[]
 
 === Selecting a person : `select`
 
@@ -382,10 +425,12 @@ Format: `history`
 Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and next input respectively in the command box.
 ====
 
+// tag::sort[]
 === Sorting entries in the addressbook : `sort`
 
 Sorts all the entries in addressbook in the alphabetical order of the names. +
 Format: `sort`
+// end::sort[]
 
 // tag::undoredo[]
 === Undoing previous command : `undo`

@@ -4,11 +4,12 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.ArrangeCommand;
+import seedu.address.logic.commands.ChangePasswordCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 //@@author YuchenHe98
 /**
- * Parses input arguments and creates a new ArrangeCommand object
+ * Parses input arguments and creates a new ChangePasswordCommand object
  */
 public class ArrangeCommandParser implements Parser<ArrangeCommand> {
 
@@ -30,15 +31,15 @@ public class ArrangeCommandParser implements Parser<ArrangeCommand> {
                     throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT
                             + ArrangeCommand.MESSAGE_USAGE));
                 }
-                if(listOfIndex[i] <= 0) {
+                if (listOfIndex[i] <= 0) {
                     throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT
                             + ArrangeCommand.MESSAGE_USAGE));
                 }
             }
             return new ArrangeCommand(listOfIndex);
         } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT
-                    + ArrangeCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ChangePasswordCommand.MESSAGE_USAGE));
         }
     }
 }
